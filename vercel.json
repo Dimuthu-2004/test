@@ -1,5 +1,11 @@
 {
   "installCommand": "cd mern-item-manager/frontend/lab-test && npm install",
   "buildCommand": "cd mern-item-manager/frontend/lab-test && npm run build",
-  "outputDirectory": "mern-item-manager/frontend/lab-test/dist"
+  "outputDirectory": "mern-item-manager/frontend/lab-test/dist",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://test-production-fa29.up.railway.app/api/:path*"
+    }
+  ]
 }

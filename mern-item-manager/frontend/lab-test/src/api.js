@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+const configuredBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '');
+const fallbackBaseUrl = import.meta.env.PROD ? '/api' : 'http://localhost:5001/api';
+
 const API = axios.create({
-baseURL: import.meta.env.VITE_API_URL || 'https://test-production-fa29.up.railway.app/api',
+  baseURL: configuredBaseUrl || fallbackBaseUrl,
 });
 
 export const getItems = () => API.get('/items');
