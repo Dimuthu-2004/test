@@ -5,7 +5,37 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(cors());
+const configuredOrigins = [
+  process.env.FRONTEND_URL,
+  ...(process.env.CORS_ORIGINS?.split(',').map((origin) => origin.trim()) || []),
+].filter(Boolean);
+
+const allowedOriginPatterns = [
+  /^http:\/\/localhost:\d+$/,
+  /^http:\/\/127\.0\.0\.1:\d+$/,
+  /^https:\/\/.+\.vercel\.app$/,
+];
+
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    const isAllowed =
+      configuredOrigins.includes(origin) ||
+      allowedOriginPatterns.some((pattern) => pattern.test(origin));
+
+    if (isAllowed) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get('/health', (req, res) => {
