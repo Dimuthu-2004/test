@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5001/api',
+baseURL: import.meta.env.VITE_API_URL || 'https://test-production-fa29.up.railway.app',
 });
 
 export const getItems = () => API.get('/items');
