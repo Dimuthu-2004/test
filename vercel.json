@@ -1,0 +1,5 @@
+{
+  "installCommand": "cd mern-item-manager/frontend/lab-test && npm install",
+  "buildCommand": "cd mern-item-manager/frontend/lab-test && npm run build",
+  "outputDirectory": "mern-item-manager/frontend/lab-test/dist"
+}
