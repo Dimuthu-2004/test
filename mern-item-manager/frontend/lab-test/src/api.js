@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-baseURL: import.meta.env.VITE_API_URL || 'https://test-fbns.vercel.app/',
+baseURL: import.meta.env.VITE_API_URL || 'https://test-bbrb.vercel.app/',
 });
 
 export const getItems = () => API.get('/items');
